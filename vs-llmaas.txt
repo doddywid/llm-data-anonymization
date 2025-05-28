@@ -1,0 +1,24 @@
+ltm virtual vs-llmaas-anonymizer {
+    destination 10.20.20.159:http
+    ip-protocol tcp
+    mask 255.255.255.255
+    pool ce-tbs-pool
+    profiles {
+        my-http { }
+        tcp { }
+    }
+    rules {
+        irule-llmaas
+    }
+    serverssl-use-sni disabled
+    source 0.0.0.0/0
+    source-address-translation {
+        type automap
+    }
+    translate-address enabled
+    translate-port enabled
+    vlans {
+        internal
+    }
+    vlans-enabled
+}
